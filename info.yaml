@@ -1,7 +1,7 @@
 --- 
 # TinyTapeout project information
 project:
-  wokwi_id:    0        # If using wokwi, set this to your project's ID
+  wokwi_id:    369618011219206145        # If using wokwi, set this to your project's ID
 
 # If using an HDL, set wokwi_id as 0 and uncomment and list your source files here. 
 # Source files must be in ./src and you must list each source file separately
@@ -21,39 +21,42 @@ yaml_version: 4
 #
 # Here is a great example: https://github.com/davidsiaw/tt02-davidsiaw-stackcalc/blob/38c5647f83aad2aec675d566aa3d67b98f0aac81/info.yaml
 documentation: 
-  author:       ""      # Your name
-  title:        ""      # Project title
+  author:       "Adan Torralba"      # Your name
+  title:        "4 Bit SerDes"      # Project title
   language:     "Wokwi" # other examples include Verilog, Amaranth, VHDL, etc
-  description:  ""      # Short description of what your project does
+  description:  "Serializes and Deserializes a 4 bit word"      # Short description of what your project does
 
 # Longer description of how the project works. You can use standard markdown format.
   how_it_works: |
-      Explain how your project works
+      Serializer: input a 4 bit word [A,B,C,D], the output is a serial version of the parallel word "ABCD..."
+      Deserializer: input a serialized 4 bit word "ABCD...", the output is a 4bit bus with the word [A,B,C,D]
 
 # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
   how_to_test:  |
-      Explain how to test your project
+      Input a known 4bit word in Tx_in[0:3], lets say [A,B,C,D], connect Tx_out to Rx_in, read the output  Rx_out0[0:3].
+      Rx_out0[0:3] should be the same than Tx_in[0:3]: Possible bit orders are: [A,B,C,D] or [C,D,A,B]
+      
 
 # A description of what the inputs do (e.g. red button, SPI CLK, SPI MOSI, etc).
   inputs:               
-    - none
-    - none
-    - none
-    - none
-    - none
+    - Tx_in0
+    - Tx_in1
+    - Tx_in2
+    - Tx_in3
+    - Rx_in
     - none
     - none
     - none
 # A description of what the outputs do (e.g. status LED, SPI MISO, etc)
   outputs:
-    - segment a
-    - segment b
-    - segment c
-    - segment d
-    - segment e
-    - segment f
-    - segment g
-    - dot
+    - Rx_out0
+    - Rx_out1
+    - Rx_out2
+    - Rx_out3
+    - Tx_out
+    - none
+    - none
+    - none
 # A description of what the bidirectional I/O pins do (e.g. I2C SDA, I2C SCL, etc)
   bidirectional:
     - none
